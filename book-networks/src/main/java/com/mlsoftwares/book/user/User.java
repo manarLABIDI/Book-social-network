@@ -1,5 +1,7 @@
 package com.mlsoftwares.book.user;
 
+import com.mlsoftwares.book.book.Book;
+import com.mlsoftwares.book.history.BookTransactionHistory;
 import com.mlsoftwares.book.role.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,14 +42,22 @@ public class User implements UserDetails, Principal {
     private boolean accountLocked;
     private boolean enabled;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner" )
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private  List<BookTransactionHistory> histories;
+
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
     @LastModifiedDate
     @Column(insertable = false)
     private LocalDateTime lastModifiedDate;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Role> roles;
+
 
     @Override
     public String getName() {
