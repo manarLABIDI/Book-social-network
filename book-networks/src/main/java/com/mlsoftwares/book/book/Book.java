@@ -5,10 +5,7 @@ import com.mlsoftwares.book.feedback.Feedback;
 import com.mlsoftwares.book.history.BookTransactionHistory;
 import com.mlsoftwares.book.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
@@ -24,15 +21,15 @@ public class Book extends BaseEntity {
     private String title;
     private String authorName;
 
-    private  String isbn;
+    private String isbn;
 
-    private  String synopsis;
+    private String synopsis;
 
-    private  String bookCover;
+    private String bookCover;
 
-    private  boolean archived;
+    private boolean archived;
 
-    private  boolean shareable;
+    private boolean shareable;
 
 
     @ManyToOne
@@ -43,9 +40,22 @@ public class Book extends BaseEntity {
     private List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "book")
-    private  List<BookTransactionHistory> histories;
+    private List<BookTransactionHistory> histories;
 
+    @Transient
+    public double getRate() {
+        if (feedbacks == null ||
+                feedbacks.isEmpty()) {
+            return 0.0;
+        }
 
+        var rate = this.feedbacks.stream()
+                .mapToDouble(Feedback::getNote)
+                .average()
+                .orElse(0.0);
+         // 3.23 --> 3.0
 
+        return Math.round(rate * 10.0) /10.0;
 
+    }
 }
