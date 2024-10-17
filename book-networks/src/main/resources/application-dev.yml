@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/book_social_network
+    username: postgres
+    password: root123
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: localhost
+    port: 1025
+    username: manar
+    password: smtp
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimout: 5000
+        timeout: 3000
+        writetimeout: 5000
+application:
+  security:
+    jwt:
+      secret-key: cd332202f593ee18a159b2ad6dab2f43fe985e0bb58eb5d31ed34aff842bd8a2ce15349e0c3f71304b0033ea681a2c6a5c1389d01832319911f101e80e63e377ee6335ec16e5132fa7c02f5f36d0a5b1b3edcc8f9831048daf80a80d1cca3d4697ded2076176c9cdd4ecab785e3bee728a2ef7a5844ef175d7918a369d93fa9599c369bc286456fc31fc21a751ecb284de4c6ec8606993dd8b94fe26220eab625094cd49826fa1cfaba61e35a1cd766ba9ebff0e6ac804cf3de9660665b33c633ecf467c586395b699baa8ba057ec76d736fc18b2d06970235b1ee00af0faf7f242ffe8ede6eaf34f09eeb037b55f79ed1e3a4adb5975d3ad075f723e93eca0a
+      expiration: 8640000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+server:
+  port: 8088
