@@ -64,7 +64,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/borrowed")
+    @GetMapping("/returned")
     public ResponseEntity<PageResponse<BorrowedBookResponse>> findAllReturnedBooks(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "size", defaultValue = "10", required = false) int size,

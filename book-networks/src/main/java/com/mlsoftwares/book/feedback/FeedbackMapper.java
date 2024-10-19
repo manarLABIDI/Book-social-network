@@ -1,9 +1,11 @@
 package com.mlsoftwares.book.feedback;
 
 import com.mlsoftwares.book.book.Book;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@Service
 public class FeedbackMapper {
     public Feedback tofeedback(FeedbackRequest request) {
         return Feedback.builder()
