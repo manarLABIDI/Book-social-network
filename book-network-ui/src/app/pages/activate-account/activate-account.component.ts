@@ -28,7 +28,7 @@ export class ActivateAccountComponent {
   }
 
   redirectToLogin(){
-    this.router.navigate(['/activate-account'])
+    this.router.navigate(['activate-account'])
   }
 
   private confirmAccount(token: string) {
