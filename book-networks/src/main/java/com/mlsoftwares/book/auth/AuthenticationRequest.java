@@ -12,11 +12,11 @@ import lombok.Data;
 public class AuthenticationRequest {
 
     @Email(message = "Email is not formatted")
-    @NotEmpty(message = "email is mandatory")
-    @NotBlank(message = "email is mandatory")
+    @NotEmpty(message = "Email is mandatory")
+    @NotBlank(message = "Email is mandatory")
     private String email;
-    @NotEmpty(message = "password is mandatory")
-    @NotBlank(message = "password is mandatory")
-    @Size(min=8, message = " Password should be 6 characters long minimum")
+    @NotEmpty(message = "Password is mandatory")
+    @NotBlank(message = "Password is mandatory")
+    @Size(min=8, message = "Password should be 6 characters long minimum")
     private String password;
 }
