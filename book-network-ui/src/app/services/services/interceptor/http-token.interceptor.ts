@@ -17,7 +17,7 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknow
   if(token){
     const authReq = req.clone( {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token
+        Authorization: 'Bearer ' + token
       })
     });
     return next.handle(authReq);
