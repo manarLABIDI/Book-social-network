@@ -22,8 +22,8 @@ export class BookCardComponent {
 
  
   get bookCover(): string | undefined {
-    if (this._book.cover) {
-        return 'data:image/jpg;base64,' + this._book.cover;
+    if (this._bookCover) {
+        return 'data:image/jpg;base64,' + this._bookCover;
     }
     return 'https://picsum.photos/1900/800';
 }
