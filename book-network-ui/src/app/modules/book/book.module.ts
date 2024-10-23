@@ -8,6 +8,11 @@ import { MenuComponent } from './components/menu/menu.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { MyBooksComponent } from './pages/my-books/my-books.component';
+import { ManageBookComponent } from './pages/manage-book/manage-book.component';
+import { ReturnedBooksComponent } from './pages/returned-books/returned-books.component';
+import { BorrowedBookListComponent } from './pages/borrowed-book-list/borrowed-book-list.component';
+import { BookDetailsComponent } from './pages/book-details/book-details.component';
 
 
 @NgModule({
@@ -16,7 +21,12 @@ import { RatingComponent } from './components/rating/rating.component';
     MenuComponent,
     BookListComponent,
     BookCardComponent,
-    RatingComponent
+    RatingComponent,
+    MyBooksComponent,
+    ManageBookComponent,
+    ReturnedBooksComponent,
+    BorrowedBookListComponent,
+    BookDetailsComponent
   ],
   imports: [
     CommonModule,

@@ -159,10 +159,16 @@ public class BookService {
             throw new OperationNotPermittedException("You cannot borrow your own book!");
 
         }
-        final boolean isAleardyBorrowed = bookTransactionHistoryRepository.isAlreadyBorrowedByUser(bookId, user.getId());
-        if (isAleardyBorrowed){
-            throw new OperationNotPermittedException("The requested Book is already borrowed!");
+        final boolean isAlreadyBorrowedByUser = bookTransactionHistoryRepository.isAlreadyBorrowedByUser(bookId, user.getId());
+        if (isAlreadyBorrowedByUser) {
+            throw new OperationNotPermittedException("You already borrowed this book and it is still not returned or the return is not approved by the owner");
         }
+
+        final boolean isAlreadyBorrowedByOtherUser = bookTransactionHistoryRepository.isAlreadyBorrowed(bookId);
+        if (isAlreadyBorrowedByOtherUser) {
+            throw new OperationNotPermittedException("The requested book is already borrowed");
+        }
+
         BookTransactionHistory bookTransactionHistory = BookTransactionHistory.builder()
                 .user(user)
                 .book(book)
@@ -170,6 +176,7 @@ public class BookService {
                 .returnApproved(false)
                 .build();
         return bookTransactionHistoryRepository.save(bookTransactionHistory).getId();
+
     }
 
     public Integer returnBorrowBook(Integer bookId, Authentication connectedUser) {
