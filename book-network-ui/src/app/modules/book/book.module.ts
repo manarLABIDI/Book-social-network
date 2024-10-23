@@ -32,6 +32,7 @@ import { BookDetailsComponent } from './pages/book-details/book-details.componen
     CommonModule,
     BookRoutingModule,
     FormsModule,
+    
   ]
 })
 export class BookModule { }
