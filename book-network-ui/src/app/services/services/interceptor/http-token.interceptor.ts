@@ -12,7 +12,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   ) {}
 
 
-intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
   const token: string = this.tokenService.token;
   if(token){
     const authReq = req.clone( {
