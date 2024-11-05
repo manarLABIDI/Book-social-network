@@ -12,6 +12,7 @@ public class BookMapper {
         return Book.builder()
                 .id(request.id())
                 .title(request.title())
+                .isbn(request.isbn())
                 .authorName(request.authorName())
                 .synopsis(request.synopsis())
                 .archived(false)
