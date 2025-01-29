@@ -3,7 +3,7 @@ services:
     container_name: postgres-sql-bsn
     image: postgres
     environment:
-      POSTGRES_USER: potgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root123
       POSTGRES_DB: book_social_network
       PGDATA: /var/lib/postgresql/data
@@ -20,6 +20,7 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
+    restart: unless-stopped
   keycloak:
     container_name: keycloak-bsn
     image: quay.io/keycloak/keycloak:24.0.2
@@ -32,6 +33,16 @@ services:
       - spring-demo
     command:
       - "start-dev"
+    restart: unless-stopped
+  bsn-api:
+    container_name: bsn-api
+    image: bsn/bsn:latest
+    ports:
+      - 8088:8088
+    networks:
+      - spring-demo
+    depends_on:
+      - postgres
 networks:
   spring-demo:
     driver: bridge
